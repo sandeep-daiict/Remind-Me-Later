@@ -40,14 +40,19 @@ API endpoints
 2)/remindmeadd/
     method : Post
     use : add a reminder to be sceduled at given time. assumption either phone number or emailid is not empty. reminder will be send to non empty field.
+
     request : {
                 "remind_message": "message to remind",
-                "remind_date": "2016-07-25 01:53:50",
+                "remind_date": "2016-07-25 01:53:50", //remind_date format yyyy-mm-dd hh:mm:ss  and this field cant be empty
                 "remind_email": "email@example.com",
                 "remind_phone": "+xxxxxxxxxxx"
                 }
-                remind_date format yyyy-mm-dd hh:mm:ss  and this field cant be empty
+
+
+
     sample response
+
+
     response : {
             "status": "ok"
             }

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626adebd-52a3-4837-85cd-cb767270849a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Remind_Me_Later/db.sqlite3" afterPath="$PROJECT_DIR$/Remind_Me_Later/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Remind-Me-Later.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +59,8 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.482821" vertical-offset="453" max-vertical-offset="1095">
-              <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.5370705" vertical-offset="378" max-vertical-offset="1170">
+              <caret line="45" column="124" selection-start-line="45" selection-start-column="124" selection-end-line="45" selection-end-column="124" />
               <folding />
             </state>
           </provider>
@@ -853,8 +851,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.482821" vertical-offset="453" max-vertical-offset="1095">
-          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.5370705" vertical-offset="378" max-vertical-offset="1170">
+          <caret line="45" column="124" selection-start-line="45" selection-start-column="124" selection-end-line="45" selection-end-column="124" />
           <folding />
         </state>
       </provider>
