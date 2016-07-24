@@ -24,7 +24,8 @@ SECRET_KEY = '30shxeeejrac@c$g$p0i)!xo0)+n0%u6%ti8m#6m5nlx@0%ccy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+import djcelery
+djcelery.setup_loader()
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'kombu.transport.django',
     'rest_framework',
+    'djcelery'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
-
+CELERY_IMPORTS=("Remind_Me_Later.tasks",)
 ROOT_URLCONF = 'Remind_Me_Later.urls'
 
 TEMPLATES = [
@@ -90,7 +92,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
