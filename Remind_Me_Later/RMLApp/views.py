@@ -4,14 +4,18 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from Remind_Me_Later.tasks import sendEmail, sendSMS
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def remindme_list(request, format=None):
     if request.method == 'GET':
         remindme = RemindMe.objects.all()
         serializer = RemindMeSerializer(remindme, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+    return Response({'status':'error'}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def remindme_add(request, format=None):
+    if request.method == 'POST':
         serializer = RemindMeSerializer(data=request.data)
 
         if serializer.is_valid():
@@ -33,4 +37,4 @@ def remindme_list(request, format=None):
             return Response({'status':'ok'},status=status.HTTP_201_CREATED)
         return Response({'status':'error','error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-
+    return Response({'status':'error'}, status=status.HTTP_400_BAD_REQUEST)
