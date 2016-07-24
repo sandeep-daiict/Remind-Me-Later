@@ -14,6 +14,3 @@ class RemindMe(models.Model):
 
     def __str__(self):
         return self.remind_message + " at " + self.remind_date.strftime("%B %d, %Y")
-
-    def to_be_reminded_in_an_hour(self):
-        return self.remind_date >= timezone.now() - datetime.timedelta(hours=1)

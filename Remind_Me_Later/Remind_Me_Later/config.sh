@@ -1,0 +1,7 @@
+export TWILIO_SID=""
+export TWILIO_OAUTHTOKEN=""
+export TWILIO_REGISTERED_NUMBER=""
+export EMAIL_SENDER=""
+export EMAIL_SERVER=""
+export EMAIL_PORT=""
+export EMAIL_PASSWORD=""

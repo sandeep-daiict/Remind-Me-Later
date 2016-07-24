@@ -5,11 +5,12 @@ import smtplib
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from twilio.rest import TwilioRestClient
 from RMLApp.models import RemindMe
 from celery import Celery
 from celery.task import task
 BROKER_URL = 'django://'
-
+import os
 celery = Celery('tasks',broker=BROKER_URL)
 
 
@@ -22,42 +23,57 @@ def sendEmail(id):
     reminder = RemindMe.objects.get(pk=id)
     if reminder is None:
         return
-    me = "sandeepsharma.iiit4@gmail.com"
+    sender = os.environ.get("EMAIL_SENDER")
     you = reminder.remind_email
     message = reminder.remind_message
 
-    if not you:
-        return
 
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Reminder From BackTap"
-    msg['From'] = me
+    msg['Subject'] = "Reminder"
+    msg['From'] = sender
     msg['To'] = you
 
-    # Create the body of the message (a plain-text and an HTML version).
-    text = "Hi!\n" + message
-    html = "\<html><head></head><body><p>Hi!<br>How are you?<br>"+ message +"</p></body></html>"
+
+    text = message
+    html = "<html><head></head><body><p>"+ message +"</p></body></html>"
 
 
-    # Record the MIME types of both parts - text/plain and text/html.
+
     part1 = MIMEText(text, 'plain')
     part2 = MIMEText(html, 'html')
 
-    # Attach parts into message container.
-    # According to RFC 2046, the last part of a multipart message, in this case
-    # the HTML message, is best and preferred.
+
     msg.attach(part1)
     msg.attach(part2)
 
-    # Send the message via local SMTP server.
 
 
-    # sendmail function takes 3 arguments: sender's address, recipient's address
-    # and message to send - here it is sent as one string.
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    email_server =  os.environ.get("EMAIL_SERVER")
+    email_port =  os.environ.get("EMAIL_PORT")
+    email_password = os.environ.get("EMAIL_PASSWORD")
+
+    server = smtplib.SMTP(email_server,email_port)
     server.starttls()
-    server.login("sandeepsharma.iiit4@gmail.com", "python1991")
+    server.login(sender,email_password )
 
-    server.sendmail(me, you, msg.as_string())
+    server.sendmail(sender, you, msg.as_string())
     server.quit()
+
+
+@task
+def sendSMS(id):
+    reminder = RemindMe.objects.get(pk=id)
+    if reminder is None:
+        return
+    account_sid = os.environ.get("TWILIO_SID")
+    auth_token =os.environ.get("TWILIO_OAUTHTOKEN")
+
+    f =os.environ.get("TWILIO_REGISTERED_NUMBER")
+
+    message = reminder.remind_message
+    if not message:
+        message = "Reminder"
+    to = reminder.remind_phone
+    client = TwilioRestClient(account_sid, auth_token)
+    client.messages.create(to=to, from_=f,body=message)
