@@ -1,7 +1,9 @@
 RML is a webapp that reminds user over their preferred channel of notification with the message.
 
+Assumptions:
 Used TWILIO for sending SMS create account and use TWILIO SID, Auth Keys and Phone number for sending SMS
 Use Email with SMTP server and port
+Reminder is scheduled based on IST
 
 fill the above details in config.sh
 
@@ -43,7 +45,7 @@ API endpoints
 
     request : {
                 "remind_message": "message to remind",
-                "remind_date": "2016-07-25 01:53:50", //remind_date format yyyy-mm-dd hh:mm:ss  and this field cant be empty
+                "remind_date": "2016-07-25 01:53:50", //remind_date format yyyy-mm-dd hh:mm:ss in IST  and this field cant be empty
                 "remind_email": "email@example.com",
                 "remind_phone": "+xxxxxxxxxxx"
                 }
